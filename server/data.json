@@ -1,0 +1,24 @@
+{
+    "done": {
+        "name": "Done",
+        "tasks": [
+            {
+                "id": "4ca35e79-ce04-4d33-9587-c2be8809778b",
+                "title": "at your own risk"
+            }
+        ]
+    },
+    "inProgress": {
+        "name": "In Progress",
+        "tasks": [
+            {
+                "id": "744bdad8-5a8c-49a3-90dc-c4338376a90e",
+                "title": "joe"
+            }
+        ]
+    },
+    "todo": {
+        "name": "To Do",
+        "tasks": []
+    }
+}
