@@ -14,7 +14,6 @@ import { CSS } from '@dnd-kit/utilities';
 import { useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 
-// Initial tasks stored in memory
 const initialTasks = {
     todo: {
         name: 'To Do',
@@ -87,7 +86,6 @@ export default function TaskBoard() {
             return;
         }
 
-        // Find source column and task
         let sourceColumn = null;
         let sourceIndex = null;
         for (const columnId in tasks) {
@@ -104,11 +102,9 @@ export default function TaskBoard() {
             return;
         }
 
-        // Find destination column and index
         let destinationColumn = null;
         let destinationIndex = null;
 
-        // Check if dropped over a task
         for (const columnId in tasks) {
             const index = tasks[columnId].tasks.findIndex((task) => task.id === over.id);
             if (index !== -1) {
@@ -118,7 +114,6 @@ export default function TaskBoard() {
             }
         }
 
-        // If dropped over a column (empty or column ID)
         if (!destinationColumn && tasks[over.id]) {
             destinationColumn = over.id;
             destinationIndex = tasks[over.id].tasks.length;
@@ -138,14 +133,12 @@ export default function TaskBoard() {
 
         const updatedTasks = { ...tasks };
 
-        // Handle same column reordering
         if (sourceColumn === destinationColumn && destinationIndex !== sourceIndex) {
             const newTasks = [...tasks[sourceColumn].tasks];
             const [movedTask] = newTasks.splice(sourceIndex, 1);
             newTasks.splice(destinationIndex, 0, movedTask);
             updatedTasks[sourceColumn] = { ...tasks[sourceColumn], tasks: newTasks };
         } else if (sourceColumn !== destinationColumn) {
-            // Move to different column
             const sourceTasks = [...tasks[sourceColumn].tasks];
             const destinationTasks = [...tasks[destinationColumn].tasks];
             const [movedTask] = sourceTasks.splice(sourceIndex, 1);
